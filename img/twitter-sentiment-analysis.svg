@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img">
+  <defs>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#c8e4ff" stroke-opacity=".09" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#124880"/>
+      <stop offset="1" stop-color="#0e3968"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="#0f3f73"/>
+  <rect width="1600" height="1000" fill="url(#grid)"/>
+  <path d="M80 210H1520" stroke="#c8e4ff" stroke-opacity=".35"/>
+  <text x="80" y="92" fill="#ffcb47" font-family="Arial,sans-serif" font-size="24" letter-spacing="5">PROJECT / 03 — SOCIAL LISTENING</text>
+  <text x="80" y="166" fill="#eef6ff" font-family="Arial,sans-serif" font-size="50" font-weight="700" letter-spacing="2">TWITTER SENTIMENT ANALYSIS</text>
+  <rect x="80" y="270" width="1440" height="650" rx="8" fill="url(#panel)" stroke="#c8e4ff" stroke-opacity=".35" stroke-width="2"/>
+  <text x="128" y="338" fill="#b5d0ec" font-family="Arial,sans-serif" font-size="22" letter-spacing="3">TWEET SENTIMENT DISTRIBUTION</text>
+  <rect x="1195" y="298" width="275" height="58" rx="4" fill="#ffcb47"/>
+  <text x="1332" y="336" fill="#14253a" font-family="Arial,sans-serif" font-size="18" font-weight="700" letter-spacing="2" text-anchor="middle">STREAMLIT DASHBOARD</text>
+  <rect x="128" y="390" width="390" height="470" rx="6" fill="#0f3f73" stroke="#c8e4ff" stroke-opacity=".25" stroke-width="2"/>
+  <text x="168" y="452" fill="#b5d0ec" font-family="Arial,sans-serif" font-size="18" letter-spacing="2">TOP SENTIMENT</text>
+  <text x="168" y="554" fill="#eef6ff" font-family="Arial,sans-serif" font-size="62" font-weight="700">Neutral</text>
+  <text x="168" y="634" fill="#ffcb47" font-family="Arial,sans-serif" font-size="54" font-weight="700">50.5%</text>
+  <path d="M168 690H475" stroke="#c8e4ff" stroke-opacity=".25"/>
+  <path d="M168 758h20l12-16 20 31 18-21h32" fill="none" stroke="#ffcb47" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"/>
+  <text x="168" y="814" fill="#b5d0ec" font-family="Arial,sans-serif" font-size="16" letter-spacing="2">SHIN TAE-YONG DISMISSAL</text>
+  <text x="590" y="432" fill="#eef6ff" font-family="Arial,sans-serif" font-size="20" letter-spacing="2">SHARE OF CLASSIFIED TWEETS</text>
+  <text x="590" y="520" fill="#eef6ff" font-family="Arial,sans-serif" font-size="22">Neutral</text>
+  <text x="1455" y="520" fill="#ffcb47" font-family="Arial,sans-serif" font-size="26" font-weight="700" text-anchor="end">50.5%</text>
+  <rect x="590" y="544" width="865" height="24" rx="4" fill="#0f3f73" stroke="#c8e4ff" stroke-opacity=".35" stroke-width="2"/>
+  <rect x="590" y="544" width="437" height="24" rx="4" fill="#ffcb47"/>
+  <text x="590" y="642" fill="#eef6ff" font-family="Arial,sans-serif" font-size="22">Positive</text>
+  <text x="1455" y="642" fill="#b5d0ec" font-family="Arial,sans-serif" font-size="26" font-weight="700" text-anchor="end">35.9%</text>
+  <rect x="590" y="666" width="865" height="24" rx="4" fill="#0f3f73" stroke="#c8e4ff" stroke-opacity=".35" stroke-width="2"/>
+  <rect x="590" y="666" width="311" height="24" rx="4" fill="#b5d0ec"/>
+  <text x="590" y="764" fill="#eef6ff" font-family="Arial,sans-serif" font-size="22">Negative</text>
+  <text x="1455" y="764" fill="#b5d0ec" font-family="Arial,sans-serif" font-size="26" font-weight="700" text-anchor="end">13.6%</text>
+  <rect x="590" y="788" width="865" height="24" rx="4" fill="#0f3f73" stroke="#c8e4ff" stroke-opacity=".35" stroke-width="2"/>
+  <rect x="590" y="788" width="118" height="24" rx="4" fill="#8bb4d9"/>
+  <path d="M128 862H1470" stroke="#c8e4ff" stroke-opacity=".2"/>
+  <text x="128" y="897" fill="#b5d0ec" font-family="Arial,sans-serif" font-size="16" letter-spacing="2">TEXTBLOB POLARITY · INDONESIAN TWEETS</text>
+</svg>

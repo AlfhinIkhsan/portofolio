@@ -1,284 +1,444 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alfhin Ikhsan</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alfhin Ikhsan</title>
+<meta name="description" content="Portfolio of Muhamad Ikhsan Alfhidiansyah, Informatics graduate seeking a Data Analyst internship.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Theme "Blueprint": the portfolio laid out as a set of engineering drawings. */
+:root{
+  --bg:#0f3f73; --panel:#124880; --ink:#eef6ff; --muted:#b5d0ec;
+  --line:rgba(200,228,255,.34); --grid:rgba(200,228,255,.045); --grid-major:rgba(200,228,255,.11); --accent:#ffcb47; --on-accent:#14253a;
+  --display:"Barlow Condensed","Arial Narrow",sans-serif;
+  --body:"Barlow",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+  color-scheme:dark;
+}
+:root[data-theme="paper"]{
+  --bg:#eef4f9; --panel:#fbfdff; --ink:#12304f; --muted:#466280;
+  --line:rgba(22,76,128,.32); --grid:rgba(22,76,128,.045); --grid-major:rgba(22,76,128,.11); --accent:#c2391f; --on-accent:#ffffff;
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{
+  background-color:var(--bg);
+  background-image:
+    linear-gradient(var(--grid-major) 1px,transparent 1px),linear-gradient(90deg,var(--grid-major) 1px,transparent 1px),
+    linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:120px 120px,120px 120px,24px 24px,24px 24px;
+  color:var(--ink);font:400 17px/1.65 var(--body);
+}
+a{color:inherit}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{width:min(1080px,100%);margin-inline:auto;padding-inline:20px}
+
+header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px}
+.brand{font:700 1.2rem/1.1 var(--display);letter-spacing:.03em;text-transform:uppercase;text-decoration:none}
+nav ul{display:flex;gap:4px;list-style:none}
+nav a{display:block;padding:8px 14px;font:500 .8rem var(--mono);text-decoration:none;border:1px solid transparent}
+nav a:hover{border-color:var(--line)}
+nav a[aria-current="true"]{border-color:var(--accent);color:var(--accent)}
+.tools{display:flex;gap:8px;align-items:center}
+.tool{background:none;border:1px solid var(--line);color:var(--ink);font:500 .75rem var(--mono);padding:8px 12px;cursor:pointer}
+.tool:hover{border-color:var(--accent)}
+#menuBtn{display:none}
+
+.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:center;padding-block:72px 88px}
+.hero>*,.about>*,.contact>*{min-width:0}
+.kicker{font:500 .85rem var(--mono);color:var(--accent);margin-bottom:14px}
+h1{font:700 clamp(3rem,8.5vw,6.2rem)/.94 var(--display);text-transform:uppercase;text-wrap:balance}
+h1 span{display:block;color:transparent;-webkit-text-stroke:1.5px var(--ink)}
+.lead{font-size:1.2rem;color:var(--muted);max-width:34ch;margin:22px 0 32px}
+.actions{display:flex;flex-wrap:wrap;gap:14px}
+.btn{display:inline-block;padding:13px 22px;border:1px solid var(--ink);background:none;color:var(--ink);font:500 .85rem var(--mono);text-decoration:none;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(-3px,-3px);box-shadow:3px 3px 0 var(--accent)}
+.btn.solid{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.solid:hover{box-shadow:3px 3px 0 var(--ink)}
+
+figure.drawing{position:relative;width:min(340px,100%);justify-self:center;padding:0 34px 34px 0}
+.frame{position:relative;aspect-ratio:4/5;border:1px solid var(--ink);background:var(--panel);padding:10px}
+.frame::before,.frame::after{content:"";position:absolute;width:26px;height:26px;border:2px solid var(--accent)}
+.frame::before{top:-8px;left:-8px;border-width:2px 0 0 2px}
+.frame::after{bottom:-8px;right:-8px;border-width:0 2px 2px 0}
+.photo{position:relative;width:100%;height:100%;display:grid;place-items:center;overflow:hidden;background:var(--bg)}
+.photo>span,.shot>span{font:700 3rem var(--display);color:var(--muted);letter-spacing:.06em}
+.photo img,.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dim{position:absolute;font:400 .7rem var(--mono);color:var(--muted);display:flex;align-items:center;justify-content:center}
+.dim.h{left:0;right:34px;bottom:0;height:22px;border-inline:1px solid var(--line);background:linear-gradient(var(--line),var(--line)) center/100% 1px no-repeat}
+.dim.v{top:0;bottom:34px;right:0;width:22px;border-block:1px solid var(--line);background:linear-gradient(var(--line),var(--line)) center/1px 100% no-repeat}
+.dim b{font-weight:400;background:var(--bg);padding:0 8px}
+.dim.v b{writing-mode:vertical-rl;padding:8px 0}
+
+section{padding-block:72px;border-top:1px dashed var(--line)}
+h2{display:flex;align-items:baseline;gap:16px;font:700 clamp(1.75rem,7.5vw,3.2rem)/1 var(--display);text-transform:uppercase;margin-bottom:40px}
+h2 i{font:500 .85rem var(--mono);font-style:normal;color:var(--accent)}
+h2::after{content:"";flex:1;min-width:0;height:1px;background:var(--line);align-self:center}
+
+.about{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:start}
+.about p{margin-bottom:18px;max-width:64ch}
+.about .btn{margin-top:8px}
+.schema{border:1px solid var(--ink);background:var(--panel)}
+.schema h3{font:500 .8rem var(--mono);padding:12px 18px;border-bottom:1px solid var(--ink);color:var(--accent)}
+.schema dl>div{padding:16px 18px;border-bottom:1px solid var(--line)}
+.schema dl>div:last-child{border-bottom:0}
+.schema dt{font-weight:600;margin-bottom:8px}
+.schema dd,.tags{display:flex;flex-wrap:wrap;gap:6px;list-style:none}
+.schema dd span,.tags li{font:400 .75rem var(--mono);border:1px solid var(--line);padding:3px 9px}
+
+.projects{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.card{display:flex;flex-direction:column;border:1px solid var(--line);background:var(--panel);transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-6px);border-color:var(--accent)}
+.shot{position:relative;aspect-ratio:16/10;display:grid;place-items:center;border-bottom:1px solid var(--line);overflow:hidden}
+.card-body{display:flex;flex-direction:column;gap:14px;padding:20px;flex:1}
+.card h3{font:700 1.55rem/1.1 var(--display);text-transform:uppercase;text-wrap:balance}
+.card p{color:var(--muted);font-size:.98rem}
+.card .link{margin-top:auto;font:500 .85rem var(--mono);color:var(--accent);text-underline-offset:5px;align-self:flex-start}
+.meta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;border-top:1px solid var(--line);padding:10px 20px;font:400 .72rem var(--mono);color:var(--muted)}
+
+.card .sub,.timeline .sub{font:400 .78rem/1.5 var(--mono);color:var(--muted)}
+.points{padding-left:18px;display:grid;gap:6px;font-size:.95rem}
+.points li::marker{color:var(--accent)}
+
+.timeline{display:grid;gap:24px}
+.timeline article{display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;border:1px solid var(--line);background:var(--panel);padding:24px}
+.when{font:500 .8rem var(--mono);color:var(--accent)}
+.timeline h3{font:700 1.55rem/1.15 var(--display);text-transform:uppercase;margin-bottom:6px}
+.timeline .sub{margin-bottom:14px}
+
+.certs{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:32px}
+.certs li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.certs .main{grid-column:1/-1;border:1px solid var(--accent);background:var(--panel);padding:18px 20px;margin-bottom:10px}
+.certs strong{display:block;font-weight:600;line-height:1.4}
+.certs a{color:inherit;text-decoration-color:var(--line);text-underline-offset:4px}
+.certs a:hover{color:var(--accent);text-decoration-color:currentColor}
+.certs span{font-size:.9rem;color:var(--muted)}
+.certs b{font:500 .8rem var(--mono);color:var(--accent)}
+
+.contact{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:start}
+form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+label{display:grid;gap:6px;font:500 .75rem var(--mono);color:var(--muted);min-width:0}
+.full{grid-column:1/-1}
+input,textarea{width:100%;background:var(--panel);border:1px solid var(--line);color:var(--ink);font:400 1rem var(--body);padding:12px 14px}
+input:focus,textarea:focus{border-color:var(--accent)}
+textarea{resize:vertical;min-height:140px}
+#status{font-size:.95rem;color:var(--accent)}
+.contact h3{font:700 1.6rem var(--display);text-transform:uppercase;margin-bottom:14px}
+.social{list-style:none;border-top:1px solid var(--line);margin-bottom:26px}
+.social a{display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.social a:hover{color:var(--accent)}
+.social span:last-child{font:400 .78rem var(--mono);color:var(--muted);overflow-wrap:anywhere}
+.mail{overflow-wrap:anywhere}
+
+footer{padding-block:32px 40px}
+.titleblock{display:grid;grid-template-columns:2fr 1fr 1fr;border:1px solid var(--ink);background:var(--panel)}
+.titleblock div{padding:12px 16px;border-right:1px solid var(--line);min-width:0}
+.titleblock div:last-child{border-right:0}
+.titleblock small{display:block;font:400 .68rem var(--mono);color:var(--muted)}
+.titleblock strong{font:600 1.15rem var(--display);text-transform:uppercase}
+
+@media (prefers-reduced-motion:no-preference){
+  .hero>div{animation:rise .7s ease-out both}
+  .frame{animation:draw 1s .15s ease-out both}
+  @keyframes rise{from{transform:translateY(18px);opacity:.2}}
+  @keyframes draw{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(-12px)}}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+@media (max-width:900px){
+  .hero,.about,.contact{grid-template-columns:1fr}
+  .projects{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+}
+@media (max-width:720px){
+  .timeline article{grid-template-columns:1fr;gap:10px;padding:18px}
+  .certs{grid-template-columns:1fr}
+  section{padding-block:52px}
+  .hero{padding-block:44px 60px;gap:44px}
+}
+@media (max-width:980px){
+  #menuBtn{display:block}
+  .brand{font-size:1.05rem}
+  nav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--bg);border-bottom:1px solid var(--line)}
+  nav.open{display:block}
+  nav ul{flex-direction:column;padding:8px 20px 16px}
+}
+@media (max-width:520px){
+  form,.titleblock{grid-template-columns:1fr}
+  .titleblock div{border-right:0;border-bottom:1px solid var(--line)}
+  .titleblock div:last-child{border-bottom:0}
+}
+</style>
 </head>
 <body>
-    <div class="custom-cursor"></div>
-    
-    <nav class="fixed w-full bg-[#0A192F] bg-opacity-90 z-50 shadow-lg">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <a href="#" class="text-2xl font-bold text-[#64FFDA]">Muhamad Ikhsan Alfhidiansyah</a>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link text-[#CCD6F6] hover:text-[#64FFDA] transition">Home</a>
-                    <a href="#about" class="nav-link text-[#CCD6F6] hover:text-[#64FFDA] transition">About</a>
-                    <a href="#projects" class="nav-link text-[#CCD6F6] hover:text-[#64FFDA] transition">Projects</a>
-                    <a href="#contact" class="nav-link text-[#CCD6F6] hover:text-[#64FFDA] transition">Contact</a>
-                </div>
-                <button class="md:hidden text-[#CCD6F6]" id="menu-toggle">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-            </div>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#home">Muhamad Ikhsan Alfhidiansyah</a>
+    <div class="tools">
+      <nav id="nav" aria-label="Main">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#certificates">Certificates</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="tool" id="themeBtn" type="button">Paper</button>
+      <button class="tool" id="menuBtn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero" id="home">
+    <div>
+      <p class="kicker">Data Analyst · BNSP-certified Associate Data Engineer</p>
+      <h1>Hi, I'm <span>Alfhin Ikhsan</span></h1>
+      <p class="lead">Informatics graduate who turns data into reliable reports and insights that support business decisions</p>
+      <div class="actions">
+        <a class="btn solid" href="#projects">View My Projects</a>
+        <a class="btn" href="#contact">Get In Touch</a>
+      </div>
+    </div>
+    <figure class="drawing">
+      <div class="frame">
+        <div class="photo">
+          <span aria-hidden="true">AI</span>
+          <img src="profile.jpg" alt="Alfhin Ikhsan">
         </div>
-        
-        <div class="md:hidden hidden bg-[#112240] w-full py-4" id="mobile-menu">
-            <div class="container mx-auto px-6 flex flex-col space-y-4">
-                <a href="#home" class="nav-link text-[#CCD6F6] hover:text-[#64FFDA] transition">Home</a>
-                <a href="#about" class="nav-link text-[#CCD6F6] hover:text-[#64FFDA] transition">About</a>
-                <a href="#projects" class="nav-link text-[#CCD6F6] hover:text-[#64FFDA] transition">Projects</a>
-                <a href="#contact" class="nav-link text-[#CCD6F6] hover:text-[#64FFDA] transition">Contact</a>
-            </div>
+      </div>
+      <div class="dim h" aria-hidden="true"><b>Universitas Gunadarma</b></div>
+      <div class="dim v" aria-hidden="true"><b>GPA 3.59 / 4.00</b></div>
+    </figure>
+  </div>
+
+  <section id="about">
+    <div class="wrap">
+      <h2><i>01.</i> About Me</h2>
+      <div class="about">
+        <div>
+          <p>I am an Informatics graduate of Universitas Gunadarma (GPA 3.59/4.00) and a BNSP-certified Associate Data Engineer, with hands-on experience in collecting, cleaning, and analyzing data, building reports, and validating data accuracy across systems and documents.</p>
+          <p>I work with Microsoft Excel (pivot tables, formulas, charts), SQL, Python, and Pandas. For my thesis, I compared machine learning models and presented the results in an interactive application.</p>
+          <p>I am seeking a Data Analyst internship where I can turn data into reliable reports and insights that support business decisions.</p>
+          <a class="btn solid" href="img/cv.pdf" target="_blank" rel="noopener">Download CV</a>
         </div>
-    </nav>
-    
-    <section id="home" class="section flex items-center justify-center bg-[#0A192F]">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-12 md:mb-0 fade-in">
-                    <h1 class="text-4xl md:text-6xl font-bold text-[#CCD6F6] mb-4">Hi, I'm <span class="text-[#64FFDA]">Alfhin Ikhsan</span></h1>
-                    <h2 class="text-2xl md:text-3xl font-semibold text-[#8892B0] mb-6">Informatics student passionate about solving real-world problems through code</h2>
-                    <div class="flex space-x-4">
-                        <a href="#projects" class="bg-[#64FFDA] text-[#0A192F] px-6 py-3 rounded font-medium hover:bg-opacity-90 transition">View My Project</a>
-                        <a href="#contact" class="border border-[#64FFDA] text-[#64FFDA] px-6 py-3 rounded font-medium hover:bg-[#64FFDA] hover:bg-opacity-10 transition">Get In Touch</a>
-                    </div>
-                </div>
-                <div class="md:w-1/2 flex justify-center fade-in">
-                    <div class="relative w-64 h-64 md:w-80 md:h-80">
-                        <div class="absolute inset-0 bg-[#64FFDA] rounded-full opacity-20 blur-xl"></div>
-                        <div class="relative w-full h-full flex items-center justify-center">
-                            <img src="img\profile.png" 
-                                 alt="Wayn" 
-                                 class="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover border-4 border-[#64FFDA] floating">
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="schema">
+          <h3>TABLE skills</h3>
+          <dl>
+            <div><dt>Data Analysis</dt><dd><span>Microsoft Excel (Pivot Table, Formulas, Charts)</span><span>Data Cleaning</span><span>Data Validation</span></dd></div>
+            <div><dt>Programming &amp; Libraries</dt><dd><span>Python</span><span>Pandas</span><span>Scikit-learn</span><span>PHP</span><span>JavaScript</span><span>Laravel</span></dd></div>
+            <div><dt>Databases</dt><dd><span>SQL</span><span>MySQL</span><span>PostgreSQL</span></dd></div>
+            <div><dt>Soft Skills</dt><dd><span>Teamwork</span><span>Communicative</span><span>Adaptable</span><span>Analytical Thinking</span><span>Organized</span><span>Time Management</span></dd></div>
+            <div><dt>Language</dt><dd><span>English (professional spoken &amp; written)</span></dd></div>
+          </dl>
         </div>
-    </section>
-    
-    <section id="about" class="section bg-[#112240]">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-[#CCD6F6] mb-12 text-center fade-in">
-                <span class="text-[#64FFDA]">01.</span> About Me
-            </h2>
-            
-            <div class="flex flex-col md:flex-row items-center gap-12">
-                <div class="md:w-1/2 fade-in">
-                    <div class="mb-8">
-                        <p class="text-[#8892B0] mb-4">My name is Muhamad Ikhsan Alfhidiansyah, and I am a fourth-year Informatics Engineering student at Gunadarma University. My academic journey has provided me with a solid foundation in the fundamental principles of computer science, including data structures, algorithms, and database management. This theoretical knowledge has fueled a deep interest in technology and serves as the bedrock for the practical skills I continuously hone.</p>
-                        <p class="text-[#8892B0] mb-4">My primary focus is on web development, specifically on the back-end. I have a strong command of PHP and JavaScript and am experienced in building RESTful APIs using frameworks like Laravel. I actively apply theory to practice through relevant projects, such as designing and building the back-end services for an inventory system application, which included user authentication, product management, and transaction processing. This experience has sharpened my skills in database schema design, building efficient business logic, and ensuring server security.</p>
-                        <p class="text-[#8892B0]">I am currently seeking an internship opportunity for the upcoming semester to contribute to a professional development team. My career aspiration is to grow as a Back-End Developer or Junior Programmer, roles where I can apply my skills in system logic, API development, and database interaction. I am a fast learner, highly motivated, and enthusiastic about tackling real-world challenges while contributing significantly to a team's success.</p>
-                    </div>
-                    
-                    
-                    
-                    <a href="img/cv.pdf" download="Resume-Khoirul Ikhwan.pdf" class="inline-block border border-[#64FFDA] text-[#64FFDA] px-6 py-3 rounded font-medium hover:bg-[#64FFDA] hover:bg-opacity-10 transition fade-in">
-                    Download Resume
-                    </a>
-                </div>
-                
-                <div class="md:w-1/2 fade-in">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="skill-tag bg-[#0A192F] p-4 rounded-lg border border-[#1E2A47] transition cursor-default">
-                            <div class="flex items-center mb-2">
-                                <i class="fas fa-laptop-code text-[#64FFDA] text-xl mr-2"></i>
-                                <h4 class="text-[#CCD6F6] font-medium">Programming Languages</h4>
-                            </div>
-                            <p class="text-sm text-[#8892B0]">Python, JavaScript, PHP</p>
-                        </div>
-                        
-                        <div class="skill-tag bg-[#0A192F] p-4 rounded-lg border border-[#1E2A47] transition cursor-default">
-                            <div class="flex items-center mb-2">
-                                <i class="fas fa-chart-simple text-[#64FFDA] text-xl mr-2"></i>
-                                <h4 class="text-[#CCD6F6] font-medium">Data Processing & Tools</h4>
-                            </div>
-                            <p class="text-sm text-[#8892B0]">Pandas, Web Scraping</p>
-                        </div>
-                        <div class="skill-tag bg-[#0A192F] p-4 rounded-lg border border-[#1E2A47] transition cursor-default">
-                            <div class="flex items-center mb-2">
-                                <i class="fas fa-gear text-[#64FFDA] text-xl mr-2"></i>
-                                <h4 class="text-[#CCD6F6] font-medium">Back-End Development</h4>
-                            </div>
-                            <p class="text-sm text-[#8892B0]">Database Management (MySQL), PostgreSQL, System Logic</p>
-                        </div>
-                        <div class="skill-tag bg-[#0A192F] p-4 rounded-lg border border-[#1E2A47] transition cursor-default">
-                            <div class="flex items-center mb-2">
-                                <i class="fas fa-rocket text-[#64FFDA] text-xl mr-2"></i>
-                                <h4 class="text-[#CCD6F6] font-medium">App Frameworks & Deployment</h4>
-                            </div>
-                            <p class="text-sm text-[#8892B0]">Laravel, Streamlit, Boostrap</p>
-                        </div>
-                        <div class="skill-tag bg-[#0A192F] p-4 rounded-lg border border-[#1E2A47] transition cursor-default">
-                            <div class="flex items-center mb-2">
-                                <i class="fas fa-desktop text-[#64FFDA] text-xl mr-2"></i>
-                                <h4 class="text-[#CCD6F6] font-medium">IT Fundamentals</h4>
-                            </div>
-                            <p class="text-sm text-[#8892B0]">Networking Basics, Operating Systems (Windows), Troubleshooting</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <h2><i>02.</i> Featured Projects</h2>
+      <div class="projects">
+        <article class="card">
+          <div class="shot">
+            <img src="img/maternal-health-app.png" alt="Maternal health risk Streamlit app comparing Logistic Regression, Random Forest, and SVM predictions">
+          </div>
+          <div class="card-body">
+            <h3>Maternal Health Risk Classification</h3>
+            <p class="sub">Undergraduate thesis: Logistic Regression vs Random Forest vs SVM</p>
+            <ul class="points">
+              <li>Collected, labeled, and analyzed 525 primary antenatal care records; cleaned the data, handled outliers, and engineered a BMI feature.</li>
+              <li>Tuned models with Grid Search and evaluated them with Repeated Stratified K-Fold.</li>
+              <li>Interpreted results with SHAP in a Streamlit app to support screening decisions by healthcare professionals.</li>
+            </ul>
+            <ul class="tags"><li>Python</li><li>Pandas</li><li>Scikit-learn</li><li>imbalanced-learn</li><li>SHAP</li><li>Streamlit</li></ul>
+            <a class="link" href="https://risikokehamilanapp-gdhys7bxvyr4vkdkaxvrwt.streamlit.app" target="_blank" rel="noopener">Open Streamlit App</a>
+          </div>
+          <div class="meta"><span>Thesis</span><span>Apr – Aug 2026</span></div>
+        </article>
+        <article class="card">
+          <div class="shot"><span aria-hidden="true">IMS</span><img src="https://alfhinikhsan.github.io/portofolio/img/inventory.png" alt="Inventory system screenshot" onerror="this.remove()"></div>
+          <div class="card-body">
+            <h3>Inventory Information System</h3>
+            <p class="sub">Web-based system for Toko Nurjaya · Full-Stack Developer, academic paper</p>
+            <ul class="points">
+              <li>Designed and built the system on a MySQL database, with dynamic reporting modules that present inventory data automatically.</li>
+              <li>Implemented multi-role authentication and authorization to control access by user role.</li>
+            </ul>
+            <ul class="tags"><li>Laravel</li><li>PHP</li><li>MySQL</li><li>JavaScript</li><li>HTML5</li><li>CSS3</li></ul>
+            <a class="link" href="https://github.com/AlfhinIkhsan/inventory-system.git" target="_blank" rel="noopener">View Project</a>
+          </div>
+          <div class="meta"><span>Full-Stack</span><span>Apr – Jul 2025</span></div>
+        </article>
+        <article class="card">
+          <div class="shot">
+            <img src="img/patrikkul.png" alt="Streamlit dashboard displaying collected tweets about Patrick Kluivert">
+          </div>
+          <div class="card-body">
+            <h3>Twitter Sentiment Analysis</h3>
+            <p class="sub">Patrick Kluivert · Streamlit sentiment dashboard</p>
+            <ul class="points">
+              <li>Scraped tweets with a Tweet-Harvest crawler (Node.js) on Google Colab and stored them as CSV.</li>
+              <li>Translated Indonesian text with googletrans, classified it by TextBlob polarity, and processed the data with Pandas.</li>
+              <li>Visualized the results with bar, pie, and scatter plots in an interactive Streamlit dashboard.</li>
+            </ul>
+            <ul class="tags"><li>Python</li><li>Pandas</li><li>TextBlob</li><li>googletrans</li><li>Node.js</li><li>Streamlit</li></ul>
+            <a class="link" href="https://github.com/AlfhinIkhsan/ANALISIS-SENTIMENT.git" target="_blank" rel="noopener">View Project</a>
+          </div>
+          <div class="meta"><span>Data Analysis &amp; Visualization</span><span>Jan 2025</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <h2><i>03.</i> Experience &amp; Education</h2>
+      <div class="timeline">
+        <article>
+          <p class="when">May 2024 – Jan 2025</p>
+          <div>
+            <h3>Member of PPS (Voting Committee), Local Election</h3>
+            <p class="sub">General Elections Commission (KPU) Bogor</p>
+            <ul class="points">
+              <li>Performed recapitulation and consolidation of vote counts from 76 polling stations (TPS), verifying consistency between the electronic system (SIREKAP) and physical documents.</li>
+              <li>Identified and resolved potential data discrepancies across polling stations, maintaining the integrity of aggregate data.</li>
+              <li>Compiled and submitted official reports and vote recapitulation certificates accurately and on schedule.</li>
+              <li>Coordinated and supervised the polling process so that it ran according to established procedures.</li>
+            </ul>
+          </div>
+        </article>
+        <article>
+          <p class="when">Aug 2022 – Aug 2026</p>
+          <div>
+            <h3>Bachelor's Degree in Informatics</h3>
+            <p class="sub">Universitas Gunadarma · GPA 3.59/4.00</p>
+            <p>Relevant coursework: Advanced Database, Data Structures and Algorithms, Software Engineering, Web Programming, Computer Networks.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="certificates">
+    <div class="wrap">
+      <h2><i>04.</i> Certifications</h2>
+      <ul class="certs">
+        <li class="main"><div><strong><a href="certificates/bnsp-associate-data-engineer.pdf" target="_blank" rel="noopener">Associate Data Engineer (Insinyur Data Madya), Artificial Intelligence</a></strong><span>BNSP Certificate of Competence, LSP Universitas Gunadarma</span></div><b>2026</b></li>
+        <li><div><strong><a href="certificates/dicoding-machine-learning-beginners.pdf" target="_blank" rel="noopener">Learning Machine Learning for Beginners</a></strong><span>Dicoding Indonesia</span></div><b>2026</b></li>
+        <li><div><strong><a href="certificates/dicoding-python-programming.pdf" target="_blank" rel="noopener">Getting Started with Python Programming</a></strong><span>Dicoding Indonesia</span></div><b>2026</b></li>
+        <li><div><strong><a href="certificates/dicoding-gen-ai-microsoft-azure.pdf" target="_blank" rel="noopener">Building Gen AI Applications with Microsoft Azure</a></strong><span>Dicoding Indonesia</span></div><b>2026</b></li>
+        <li><div><strong><a href="certificates/dicoding-data-science-microsoft-fabric.pdf" target="_blank" rel="noopener">Learning Data Science with Microsoft Fabric</a></strong><span>Dicoding Indonesia</span></div><b>2026</b></li>
+        <li><div><strong><a href="certificates/gunadarma-advanced-database-systems.pdf" target="_blank" rel="noopener">Advanced Database Systems</a></strong><span>Universitas Gunadarma</span></div><b>2026</b></li>
+        <li><div><strong><a href="certificates/gunadarma-javascript-fundamental.pdf" target="_blank" rel="noopener">JavaScript Programming Language Fundamental</a></strong><span>Universitas Gunadarma</span></div><b>2025</b></li>
+        <li><div><strong><a href="certificates/gunadarma-sql-server-intermediate.pdf" target="_blank" rel="noopener">SQL Server for Intermediate</a></strong><span>Universitas Gunadarma</span></div><b>2025</b></li>
+        <li><div><strong><a href="certificates/gunadarma-oracle-intermediate.pdf" target="_blank" rel="noopener">Oracle for Intermediate</a></strong><span>Universitas Gunadarma</span></div><b>2025</b></li>
+        <li><div><strong><a href="certificates/gunadarma-oracle-beginner.pdf" target="_blank" rel="noopener">Oracle for Beginner</a></strong><span>Universitas Gunadarma</span></div><b>2024</b></li>
+        <li><div><strong><a href="certificates/gunadarma-sql-server-beginner.pdf" target="_blank" rel="noopener">SQL Server for Beginner</a></strong><span>Universitas Gunadarma</span></div><b>2024</b></li>
+        <li><div><strong><a href="certificates/gunadarma-fundamental-dbms.pdf" target="_blank" rel="noopener">Fundamental DBMS</a></strong><span>Universitas Gunadarma</span></div><b>2023</b></li>
+        <li><div><strong>Learning SQL Basics</strong><span>Dicoding Indonesia</span></div><b>2023</b></li>
+        <li><div><strong>Learning JavaScript Programming Basics</strong><span>Dicoding Indonesia</span></div><b>2023</b></li>
+        <li><div><strong>Programming Basics to Become a Software Developer</strong><span>Dicoding Indonesia</span></div><b>2023</b></li>
+        <li><div><strong>Learning Project Management Basics</strong><span>Dicoding Indonesia</span></div><b>2023</b></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <h2><i>05.</i> Get In Touch</h2>
+      <div class="contact">
+        <form id="form">
+          <label for="name">Name<input id="name" name="name" autocomplete="name" required></label>
+          <label for="email">Email<input id="email" name="email" type="email" autocomplete="email" required></label>
+          <label for="subject" class="full">Subject<input id="subject" name="subject" required></label>
+          <label for="message" class="full">Message<textarea id="message" name="message" required></textarea></label>
+          <div class="full"><button class="btn solid" type="submit">Send Message</button></div>
+          <p id="status" class="full" role="status"></p>
+        </form>
+        <div>
+          <h3>Or find me on</h3>
+          <ul class="social">
+            <li><a href="https://www.linkedin.com/in/muhamad-ikhsan-alfhidiansyah-733803247/" target="_blank" rel="noopener"><span>LinkedIn</span><span>muhamad-ikhsan-alfhidiansyah-733803247</span></a></li>
+            <li><a href="https://www.instagram.com/alfhin_ikhsan/" target="_blank" rel="noopener"><span>Instagram</span><span>@alfhin_ikhsan</span></a></li>
+            <li><a href="https://github.com/AlfhinIkhsan" target="_blank" rel="noopener"><span>GitHub</span><span>AlfhinIkhsan</span></a></li>
+            <li><a href="https://x.com/ikhwannt" target="_blank" rel="noopener"><span>X</span><span>@ikhwannt</span></a></li>
+          </ul>
+          <p>Or email me directly at<br><a class="mail" href="mailto:alfhinikhsan74@gmail.com">alfhinikhsan74@gmail.com</a></p>
         </div>
-    </section>
-    
-    <section id="projects" class="section bg-[#0A192F]">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-[#CCD6F6] mb-12 text-center fade-in">
-                <span class="text-[#64FFDA]">02.</span> Featured Projects
-            </h2>
-            
-            
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="project-card rounded-lg overflow-hidden relative fade-in">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="img\patrikkul.png" 
-                             alt="analysis-sentiment" 
-                             class="w-full h-full object-cover transition duration-500 hover:scale-105">
-                        <div class="project-overlay absolute inset-0 bg-[#0A192F] bg-opacity-90 flex flex-col justify-center items-center p-6 opacity-0 transition duration-300 transform translate-y-4">
-                            <h3 class="text-xl font-bold text-[#CCD6F6] mb-2">Public Sentiment Analysis</h3>
-                            <p class="text-[#8892B0] text-center mb-4">Sentiment Analysis of Public Opinion on Social Media X Regarding the National Team Coach Appointment</p>
-                            <div class="flex flex-wrap justify-center gap-2 mb-4">
-                                <span class="text-xs px-2 py-1 bg-[#112240] text-[#64FFDA] rounded">Python</span>
-                                <span class="text-xs px-2 py-1 bg-[#112240] text-[#64FFDA] rounded">Streamlit</span>
-                            </div>
-                            <a href="https://github.com/AlfhinIkhsan/ANALISIS-SENTIMENT.git" target="_blank" class="text-[#64FFDA] border border-[#64FFDA] px-4 py-2 rounded hover:bg-[#64FFDA] hover:bg-opacity-10 transition">View Project</a>
-                        </div>
-                    </div>
-                    <div class="p-4 bg-[#112240]">
-                        <h3 class="text-lg font-semibold text-[#CCD6F6]">Sentiment Analysis</h3>
-                        <p class="text-sm text-[#8892B0]">Data Analysis & Visualization • 2025</p>
-                    </div>
-                </div>
-                
-                <div class="project-card rounded-lg overflow-hidden relative fade-in">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="img/portto.png" 
-                             alt="Portofolio-Web" 
-                             class="w-full h-full object-cover transition duration-500 hover:scale-105">
-                        <div class="project-overlay absolute inset-0 bg-[#0A192F] bg-opacity-90 flex flex-col justify-center items-center p-6 opacity-0 transition duration-300 transform translate-y-4">
-                            <h3 class="text-xl font-bold text-[#CCD6F6] mb-2">Personal Portfolio Website</h3>
-                            <p class="text-[#8892B0] text-center mb-4">A responsive portfolio developed with HTML, CSS, and JavaScript, featuring interactive elements and a mobile-first design.</p>
-                            <div class="flex flex-wrap justify-center gap-2 mb-4">
-                                <span class="text-xs px-2 py-1 bg-[#112240] text-[#64FFDA] rounded">HTML5</span>
-                                <span class="text-xs px-2 py-1 bg-[#112240] text-[#64FFDA] rounded">CSS3</span>
-                                <span class="text-xs px-2 py-1 bg-[#112240] text-[#64FFDA] rounded">JavaScript</span>
-                            </div>
-                            <a href="#" class="text-[#64FFDA] border border-[#64FFDA] px-4 py-2 rounded hover:bg-[#64FFDA] hover:bg-opacity-10 transition">View Project</a>
-                        </div>
-                    </div>
-                    <div class="p-4 bg-[#112240]">
-                        <h3 class="text-lg font-semibold text-[#CCD6F6]">Personal Portfolio Website</h3>
-                        <p class="text-sm text-[#8892B0]">Frontend Development • 2025</p>
-                    </div>
-                </div>
-                
-                <div class="project-card rounded-lg overflow-hidden relative fade-in">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="img/inventory.png" 
-                             alt="" 
-                             class="w-full h-full object-cover transition duration-500 hover:scale-105">
-                        <div class="project-overlay absolute inset-0 bg-[#0A192F] bg-opacity-90 flex flex-col justify-center items-center p-6 opacity-0 transition duration-300 transform translate-y-4">
-                            <h3 class="text-xl font-bold text-[#CCD6F6] mb-2">Inventory Management System (Web Application)</h3>
-                            <p class="text-[#8892B0] text-center mb-4">Designed and developed a web-based inventory management system. </p>
-                            <div class="flex flex-wrap justify-center gap-2 mb-4">
-                                <span class="text-xs px-2 py-1 bg-[#112240] text-[#64FFDA] rounded">PHP</span>
-                                <span class="text-xs px-2 py-1 bg-[#112240] text-[#64FFDA] rounded">Laravel</span>
-                                <span class="text-xs px-2 py-1 bg-[#112240] text-[#64FFDA] rounded">Mysql</span>
-                            </div>
-                            <a href="https://github.com/AlfhinIkhsan/inventory-system.git" class="text-[#64FFDA] border border-[#64FFDA] px-4 py-2 rounded hover:bg-[#64FFDA] hover:bg-opacity-10 transition">View Project</a>
-                        </div>
-                    </div>
-                    <div class="p-4 bg-[#112240]">
-                        <h3 class="text-lg font-semibold text-[#CCD6F6]">Inventory Management System</h3>
-                        <p class="text-sm text-[#8892B0]">Full-Stack • 2025</p>
-                    </div>
-                </div>
-            </div>
-            
-            
-        </div>
-    </section>
-    
-    <section id="contact" class="section bg-[#112240]">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-[#CCD6F6] mb-12 text-center fade-in">
-                <span class="text-[#64FFDA]">03.</span> Get In Touch
-            </h2>
-            
-            <div class="max-w-3xl mx-auto">
-                <p class="text-[#8892B0] text-center mb-12 fade-in">
-                    
-                </p>
-                
-                <form action="https://formspree.io/f/manjryne" method="POST" class="space-y-6 fade-in"> 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-[#CCD6F6] mb-2">Name</label>
-                        <input type="text" id="name" name="name" class="w-full px-4 py-3 bg-[#0A192F] border border-[#1E2A47] rounded focus:outline-none focus:border-[#64FFDA] text-[#CCD6F6] placeholder-[#8892B0]" placeholder="Your name" required>
-                    </div>
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-[#CCD6F6] mb-2">Email</label>
-                        <input type="email" id="email" name="email" class="w-full px-4 py-3 bg-[#0A192F] border border-[#1E2A47] rounded focus:outline-none focus:border-[#64FFDA] text-[#CCD6F6] placeholder-[#8892B0]" placeholder="your.email@example.com" required>
-                    </div>
-                </div>
-                <div>
-                    <label for="subject" class="block text-sm font-medium text-[#CCD6F6] mb-2">Subject</label>
-                    <input type="text" id="subject" name="subject" class="w-full px-4 py-3 bg-[#0A192F] border border-[#1E2A47] rounded focus:outline-none focus:border-[#64FFDA] text-[#CCD6F6] placeholder-[#8892B0]" placeholder="What's this about?" required>
-                </div>
-                <div>
-                    <label for="message" class="block text-sm font-medium text-[#CCD6F6] mb-2">Message</label>
-                    <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 bg-[#0A192F] border border-[#1E2A47] rounded focus:outline-none focus:border-[#64FFDA] text-[#CCD6F6] placeholder-[#8892B0]" placeholder="Your message here..." required></textarea>
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="bg-[#64FFDA] text-[#0A192F] px-8 py-3 rounded font-medium hover:bg-opacity-90 transition">
-                        Send Message
-                    </button>
-                </div>
-            </form>
-                
-                <div class="mt-16 flex flex-col items-center fade-in">
-                    <h3 class="text-xl font-semibold text-[#CCD6F6] mb-6">Or find me on</h3>
-                    <div class="flex space-x-6">
-                        <a href="https://www.linkedin.com/in/muhamad-ikhsan-alfhidiansyah/" target="_blank" class="text-[#8892B0] hover:text-[#64FFDA] transition text-2xl">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://www.instagram.com/alfhin_ikhsan/" target="_blank" class="text-[#8892B0] hover:text-[#64FFDA] transition text-2xl">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://github.com/AlfhinIkhsan" target="_blank" class="text-[#8892B0] hover:text-[#64FFDA] transition text-2xl">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://x.com/ikhwannt" target="_blank" class="text-[#8892B0] hover:text-[#64FFDA] transition text-2xl">
-                            <i class="fa-brands fa-x-twitter"></i>
-                        </a>
-                    </div>
-                    <div class="mt-8 text-[#8892B0]">
-                        <p>Or email me directly at <a href="mailto:alfhinikhsan74@gmail.com" class="text-[#64FFDA] hover:underline">alfhinikhsan74@gmail.com</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <footer class="bg-[#0A192F] py-8">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col items-center">
-                <div class="mb-4">
-                <div class="text-[#8892B0] text-sm text-center">        
-                    <p class="mt-1">© 2025 All rights reserved</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-    
-    <script src="script.js"></script>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <div class="titleblock">
+    <div><small>Drawn by</small><strong>Muhamad Ikhsan Alfhidiansyah</strong></div>
+    <div><small>Sheet</small><strong>Portfolio</strong></div>
+    <div><small>© <span id="year">2026</span></small><strong>All rights reserved</strong></div>
+  </div>
+</footer>
+
+<script>
+const root = document.documentElement;
+const themeBtn = document.getElementById('themeBtn');
+function setTheme(theme){
+  root.dataset.theme = theme;
+  themeBtn.textContent = theme === 'paper' ? 'Blueprint' : 'Paper';
+  themeBtn.setAttribute('aria-label', 'Switch to ' + themeBtn.textContent + ' theme');
+}
+let saved = 'blueprint';
+try { saved = localStorage.getItem('theme') || saved; } catch (e) {}
+setTheme(saved);
+themeBtn.addEventListener('click', () => {
+  const next = root.dataset.theme === 'paper' ? 'blueprint' : 'paper';
+  setTheme(next);
+  try { localStorage.setItem('theme', next); } catch (e) {}
+});
+
+const nav = document.getElementById('nav');
+const menuBtn = document.getElementById('menuBtn');
+function setMenu(open){
+  nav.classList.toggle('open', open);
+  menuBtn.setAttribute('aria-expanded', open);
+  menuBtn.textContent = open ? 'Close' : 'Menu';
+}
+menuBtn.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
+nav.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+
+// highlight the menu item for the section being read
+const links = [...nav.querySelectorAll('a')];
+function spy(){
+  const atEnd = innerHeight + scrollY >= document.body.scrollHeight - 4;
+  let current = 'home';
+  for (const id of ['about','projects','experience','certificates','contact']) {
+    if (document.getElementById(id).getBoundingClientRect().top < innerHeight * .4) current = id;
+  }
+  if (atEnd) current = 'contact';
+  links.forEach(a => a.setAttribute('aria-current', a.hash === '#' + current));
+}
+addEventListener('scroll', spy, { passive: true });
+spy();
+
+// opens the visitor's email app with the message filled in
+document.getElementById('form').addEventListener('submit', e => {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  const body = f.get('message') + '\n\nFrom: ' + f.get('name') + ' (' + f.get('email') + ')';
+  location.href = 'mailto:alfhinikhsan74@gmail.com?subject=' + encodeURIComponent(f.get('subject')) + '&body=' + encodeURIComponent(body);
+  document.getElementById('status').textContent = 'Your email app should open with this message. If it does not, email alfhinikhsan74@gmail.com directly.';
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
